@@ -1,0 +1,1 @@
+The aim of this project is to build a simple website, using Sinatra, that will enable the user to play Sudoku in the broswer.
