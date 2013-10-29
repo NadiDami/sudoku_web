@@ -2,6 +2,8 @@ require 'sinatra'
 require './lib/sudoku'
 require './lib/cell'
 
+enable :sessions
+
 def random_sudoku
   seed = (1..9).to_a.shuffle + Array.new(81-9, 0)
   sudoku = Sudoku.new(seed.join)
@@ -9,7 +11,14 @@ def random_sudoku
   sudoku.to_s.chars
 end
 
+def puzzle sudoku
+
+  sudoku
+end
+
 get '/' do
-  @current_solution = random_sudoku
+  sudoku = random_sudoku
+  session[:solution] = sudoku
+  @current_solution = puzzle(sudoku)
   erb :index
 end
