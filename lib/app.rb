@@ -30,7 +30,8 @@ def place_spaces_in array, number_of_spaces
 end
 
 def puzzle sudoku
-  place_spaces_in sudoku, 40
+  puzzle_board = sudoku.dup
+  place_spaces_in puzzle_board, 40
 end
 
 get '/' do
@@ -38,4 +39,9 @@ get '/' do
   session[:solution] = sudoku
   @current_solution = puzzle(sudoku)
   erb :index
+end
+
+get '/solution' do
+  @current_solution = session[:solution]
+  erb :index  
 end
