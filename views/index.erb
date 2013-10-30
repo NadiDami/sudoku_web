@@ -4,8 +4,10 @@
   <link href="/stylesheets/application.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+
 <h1>Life's too short for Sudoku</h1>
 <div id="sudoku">
+  <form action="/" method="post">
   <% 3.times do |row| %>
     <div class='row'>
       <% 3.times do |box| %>
@@ -16,7 +18,8 @@
                 <div class='cell'>
                   <% cell_index = row * 27 + box * 3 + cell_row * 9 + cell %>
                   <% cell_value = @current_solution[cell_index] %>
-                  <input type='text' maxlength='1' autocomplete='off' value=<%= cell_value %> >
+                  <input type='text' name='cell[]' 
+                   maxlength='1' autocomplete='off' value=<%= cell_value(cell_value) %> >
                 </div>
               <% end %>
             </div>
@@ -25,6 +28,9 @@
       <% end %>
     </div>
   <% end %>
+   <button>Check solution</button>
+  </form>
 </div>
+
 </body>
 </html>
