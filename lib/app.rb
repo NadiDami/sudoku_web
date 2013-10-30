@@ -30,7 +30,7 @@ def place_spaces_in array, number_of_spaces
 end
 
 def puzzle sudoku
-  replace_number_with_space_in sudoku
+  place_spaces_in sudoku, 40
 end
 
 get '/' do
