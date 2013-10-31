@@ -44,7 +44,7 @@ end
 
 def puzzle sudoku
   puzzle_board = sudoku.dup
-  place_zeros_in puzzle_board, 40
+  place_zeros_in puzzle_board, 35
 end
 
 def generate_new_puzzle_if_necessary
@@ -97,15 +97,7 @@ get '/solution' do
 end
 
 post '/' do
-  # boxes = params["cell"].each_slice(9).to_a
-  # cells = (0..8).to_a.inject([]) do |memo, index|
-  #   memo += boxes[index/3*3, 3].map do |box| 
-  #     box[index%3*3, 3]
-  #   end.flatten
-  # end
-  puts session[:current_solution]
   cells = box_order_to_row_order(params["cell"])
-  puts cells.inspect
   session[:current_solution] = cells.map{|value| value.to_i }.join
   session[:check_solution] = true
   redirect to("/")
