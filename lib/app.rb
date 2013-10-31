@@ -16,6 +16,8 @@ enable :sessions
 
 set :views, File.join(File.dirname(__FILE__), '..', 'views')
 
+set :session_secret, "Secret cookie key"
+
 
 def random_sudoku
   seed = (1..9).to_a.shuffle + Array.new(81-9, 0)
