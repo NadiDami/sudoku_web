@@ -1,0 +1,18 @@
+<html>
+
+  <head>
+    <title>Sudoku Solver</title>
+      <link href="/stylesheets/application.css" rel="stylesheet" type="text/css">
+      <link rel="icon" type="image/png" href="/images/favicon.jpeg">
+  </head>
+
+  <body>
+    <h1>Life's too short for Sudoku</h1>
+    <div id="flash">
+    <%= flash[:notice] %>
+    </div>
+    <div id="sudoku">
+      <%= yield %>
+  </body>
+  
+</html>
