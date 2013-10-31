@@ -1,10 +1,18 @@
 require 'sinatra'
+require 'sinatra/partial'
 require './lib/sudoku'
 require './lib/cell'
+require './helpers/application'
+
+
+register Sinatra::Partial
+set :partial_template_engine, :erb
+
 
 enable :sessions
 
 set :views, File.join(File.dirname(__FILE__), '..', 'views')
+
 
 def random_sudoku
   seed = (1..9).to_a.shuffle + Array.new(81-9, 0)
@@ -14,12 +22,12 @@ def random_sudoku
 end
 
 def replace_number_with_zero_in array
-  array[rand(array.length)] = "0"
+  array[rand(array.length)] = 0
   array
 end
 
 def count_zeros_in array
-  array.select {|s| s == "0"}.count
+  array.select {|s| s == 0}.count
 end
 
 def place_zeros_in array, number_of_zeros
@@ -47,11 +55,28 @@ def prepare_to_check_solution
   session[:check_solution] = nil
 end
 
+def box_order_to_row_order(cells)
+
+  boxes = cells.each_slice(9).to_a
+
+  (0..8).to_a.inject([]) {|memo, i|
+   
+    first_box_index = i / 3 * 3
+    three_boxes = boxes[first_box_index, 3]
+    three_rows_of_three = three_boxes.map do |box| 
+      row_number_in_a_box = i % 3
+      first_cell_in_the_row_index = row_number_in_a_box * 3
+      box[first_cell_in_the_row_index, 3]
+    end
+   memo += three_rows_of_three.flatten
+  }
+end
+
 get '/' do
   prepare_to_check_solution
   generate_new_puzzle_if_necessary
   @current_solution = session[:current_solution]
-  @puzzle = @current_solution
+  @puzzle = session[:puzzle]
   @solution = session[:solution]
   erb :index
 end
@@ -64,24 +89,25 @@ get '/solution' do
 end
 
 post '/' do
-  boxes = params["cell"].each_slice(9).to_a
-  cells = (0..8).to_a.inject([]) do |memo, index|
-    memo += boxes[index/3*3, 3].map do |box| 
-      box[index%3*3, 3]
-    end.flatten
-  end
+  # boxes = params["cell"].each_slice(9).to_a
+  # cells = (0..8).to_a.inject([]) do |memo, index|
+  #   memo += boxes[index/3*3, 3].map do |box| 
+  #     box[index%3*3, 3]
+  #   end.flatten
+  # end
+  puts session[:current_solution]
+  cells = box_order_to_row_order(params["cell"])
+  puts cells.inspect
   session[:current_solution] = cells.map{|value| value.to_i }.join
   session[:check_solution] = true
   redirect to("/")
 end
 
 
-helpers do
-  def cell_value(value)
-    return '' if value.to_i == 0
-    value
-  end
-end
+
+
+
+
 
 
 

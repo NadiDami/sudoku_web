@@ -1,11 +1,20 @@
+h1 {
+  color: #D8BFD8;
+}
+
 div.box, div.cell {
   display: inline-block;
 }
 
+div.box {
+  outline: 2px solid black;
+}
+
 .cell input {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   text-align: center;
+  font-size: 20px;
 }
 
 #sudoku {
@@ -18,10 +27,11 @@ body {
   font-family: Cambria;
 }
 
+
 .incorrect {
-  background-color: yellow;
+  background-color: #FA8072;
 }
 
 .value-provided {
-  background-color: #DDD;
+  background-color: #D8BFD8;
 }
