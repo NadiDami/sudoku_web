@@ -42,16 +42,29 @@ def place_zeros_in array, number_of_zeros
   array
 end
 
-def puzzle sudoku
+def easy_puzzle sudoku
   puzzle_board = sudoku.dup
   place_zeros_in puzzle_board, 35
 end
 
-def generate_new_puzzle_if_necessary
+def hard_puzzle sudoku
+  puzzle_board = sudoku.dup
+  place_zeros_in puzzle_board, 55
+end
+
+def generate_new_easy_puzzle_if_necessary
   return if session[:current_solution]
   sudoku = random_sudoku
   session[:solution] = sudoku
-  session[:puzzle] = puzzle(sudoku)
+  session[:puzzle] = easy_puzzle(sudoku)
+  session[:current_solution] = session[:puzzle]    
+end
+
+def generate_new_hard_puzzle_if_necessary
+  return if session[:current_solution]
+  sudoku = random_sudoku
+  session[:solution] = sudoku
+  session[:puzzle] = hard_puzzle(sudoku)
   session[:current_solution] = session[:puzzle]    
 end
 
@@ -82,7 +95,7 @@ end
 
 get '/' do
   prepare_to_check_solution
-  generate_new_puzzle_if_necessary
+  generate_new_easy_puzzle_if_necessary
   @current_solution = session[:current_solution]
   @puzzle = session[:puzzle]
   @solution = session[:solution]
@@ -103,7 +116,29 @@ post '/' do
   redirect to("/")
 end
 
+get '/neweasygame' do
+  sudoku = random_sudoku
+  session[:solution] = sudoku
+  session[:puzzle] = easy_puzzle(sudoku)
+  session[:current_solution] = session[:puzzle]
+  redirect to("/")
+  erb :index
+end
 
+get '/newhardgame' do
+  sudoku = random_sudoku
+  session[:solution] = sudoku
+  session[:puzzle] = hard_puzzle(sudoku)
+  session[:current_solution] = session[:puzzle]
+  redirect to("/")
+  erb :index
+end
+
+get '/restart' do
+  @current_solution = session[:puzzle]
+  redirect to("/")
+  erb :index
+end
 
 
 
