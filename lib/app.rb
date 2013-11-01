@@ -16,6 +16,8 @@ enable :sessions
 
 set :views, File.join(File.dirname(__FILE__), '..', 'views')
 
+set :public_folder, File.join(File.dirname(__FILE__), '..', 'views')
+
 set :session_secret, "Secret cookie key"
 
 
@@ -103,6 +105,7 @@ get '/' do
 end
 
 get '/solution' do
+  redirect to ("/") if session[:solution] == nil
   @current_solution = session[:solution]
   @puzzle = @current_solution
   @solution = session[:solution]
