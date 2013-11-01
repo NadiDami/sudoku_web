@@ -135,9 +135,8 @@ get '/newhardgame' do
 end
 
 get '/restart' do
-  @current_solution = session[:puzzle]
+  session[:current_solution] = session[:puzzle]
   redirect to("/")
-  erb :index
 end
 
 
