@@ -13,11 +13,10 @@ require './helpers/application'
 
 
 
-
+use Rack::Flash
 register Sinatra::Partial
 set :partial_template_engine, :erb
 
-use Rack::Flash
 
 
 enable :sessions
@@ -26,7 +25,7 @@ set :views, File.join(File.dirname(__FILE__), '..', 'views')
 
 set :public_folder, File.join(File.dirname(__FILE__), '..', 'public')
 
-set :session_secret, "Secret cookie key"
+set :session_secret, "secret_cookie_key"
 
 
 def random_sudoku
