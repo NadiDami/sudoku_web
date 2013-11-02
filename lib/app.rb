@@ -1,7 +1,11 @@
 require 'sinatra'
 require 'sinatra/partial'
 require 'rack-flash'
-require 'newrelic_rpm'
+
+configure :production do
+  require 'newrelic_rpm'
+end
+
 require './lib/sudoku'
 require './lib/cell'
 require './helpers/application'
