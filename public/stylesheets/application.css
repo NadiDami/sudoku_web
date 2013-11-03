@@ -19,7 +19,7 @@ div.box, div.cell {
 
 div.box {
   outline: 3px solid #800080;
-  opacity:0.7
+  opacity:0.7;
 }
 
 .cell input {
@@ -49,6 +49,29 @@ body {
 }
 
 #flash {
+  font-family: 'Podkova', serif;
   margin: 20px;
-  color: black;
+  color: white;
+  background-color: #800080;
+  opacity: 0.4;
+  font-weight: 400px
 }
+
+button {
+  color: #F5F5F5;
+  opacity: 0.8;
+  background-color: #9370DB;
+  border-radius: 10px;
+  border: 1px ;
+  width: 120px;
+  margin: 10 5 5 5;
+}
+
+.big-button {
+  width: 200px;
+}
+
+.sidebar {  
+display: block;
+}
+
