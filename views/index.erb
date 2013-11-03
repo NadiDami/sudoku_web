@@ -1,17 +1,22 @@
 
+
+ <div id="sudoku">
+  
 <form action="/neweasygame" method="get">
-   <button class="big-button sidebar">New Easy Game</button>
+   <button class="big-button">New Easy Game</button>
 </form>
 
 <form action="/newhardgame" method="get">
-   <button class="big-button sidebar">New Hard Game</button>
+   <button class="big-button">New Hard Game</button>
+</form>
+
+<form action="/restart" method="get">
+   <button class="big-button">Restart Current Game</button>
 </form>
 
 <form action="/help" method="get">
-   <button class="big-button sidebar">Help</button>
+   <button class="big-button">Help</button>
 </form>
-
- <div id="sudoku">
 <form action="/" method="post">
 <% 3.times do |row| %>
   <div class='row'>
@@ -30,19 +35,14 @@
 <% end %>
  <button name="check">Check Progress</button>
  <button name="save">Save Progress</button>
-
 </form>
+
  <form action="/solution" method="get">
    <button>Reveal Solution</button>
 </form>
 </div>
 
-<br>
 
-
-<form action="/restart" method="get">
-   <button class="big-button">Restart Current Game</button>
-</form>
 
 
 
