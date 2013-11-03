@@ -2,9 +2,7 @@ require 'sinatra'
 require 'sinatra/partial'
 require 'rack-flash'
 
-
-  require 'newrelic_rpm'
-
+require 'newrelic_rpm'
 
 require './lib/sudoku'
 require './lib/cell'
@@ -122,7 +120,7 @@ end
 post '/' do
   cells = box_order_to_row_order(params["cell"])
   session[:current_solution] = cells.map{|value| value.to_i }.join
-  session[:check_solution] = true
+  session[:check_solution] = true if !params["save"]
   redirect to("/")
 end
 
@@ -147,6 +145,10 @@ end
 get '/restart' do
   session[:current_solution] = session[:puzzle]
   redirect to("/")
+end
+
+get '/help' do
+  erb :help
 end
 
 

@@ -1,3 +1,4 @@
+ <div id="sudoku">
 <form action="/" method="post">
 <% 3.times do |row| %>
   <div class='row'>
@@ -14,7 +15,9 @@
     <% end %>
   </div>
 <% end %>
- <button>Check solution</button>
+ <button name="check">Check solution</button>
+ <button name="save">Save game</button>
+
 </form>
 </div>
 
@@ -35,4 +38,11 @@
 <form action="/newhardgame" method="get">
    <button>New hard game</button>
 </form>
+
+<form action="/help" method="get">
+   <button>Help</button>
+</form>
+
+
+   </div>
 
