@@ -19,7 +19,4 @@ describe 'Web Sudoku Solver' do
       expect(count_zeros_in array_with_zeros).to eq 6
   end
 
-
-
-
 end

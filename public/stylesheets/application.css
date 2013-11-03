@@ -1,9 +1,9 @@
 body {
-      background: url(/images/background.jpg) no-repeat center center fixed; 
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
+  background: url(/images/background.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 h1 {
@@ -31,9 +31,9 @@ div.box {
 }
 
 .cell input:hover { 
-        background-color: #9370DB;
-        opacity:0.4;
-        filter:alpha(opacity=40);
+  background-color: #9370DB;
+  opacity:0.4;
+  filter:alpha(opacity=40);
 }
 
 #sudoku {
@@ -102,4 +102,12 @@ article {
   font-weight: 400px
 }
 
+a {
+  color: black;
+  font-style: underline;
+}
+
+p {
+  color: white;
+}
 

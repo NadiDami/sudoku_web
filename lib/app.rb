@@ -1,26 +1,18 @@
 require 'sinatra'
 require 'sinatra/partial'
 require 'rack-flash'
-
 require 'newrelic_rpm'
-
 require './lib/sudoku'
 require './lib/cell'
 require './helpers/application'
-
-
-
 
 use Rack::Flash
 register Sinatra::Partial
 set :partial_template_engine, :erb
 
-
-
 enable :sessions
 
 set :views, File.join(File.dirname(__FILE__), '..', 'views')
-
 set :public_folder, File.join(File.dirname(__FILE__), '..', 'public')
 
 set :session_secret, "secret_cookie_key"
@@ -86,18 +78,15 @@ end
 def box_order_to_row_order(cells)
 
   boxes = cells.each_slice(9).to_a
-
   (0..8).to_a.inject([]) {|memo, i|
-   
-    first_box_index = i / 3 * 3
-    three_boxes = boxes[first_box_index, 3]
+  first_box_index = i / 3 * 3
+  three_boxes = boxes[first_box_index, 3]
     three_rows_of_three = three_boxes.map do |box| 
       row_number_in_a_box = i % 3
       first_cell_in_the_row_index = row_number_in_a_box * 3
       box[first_cell_in_the_row_index, 3]
     end
-   memo += three_rows_of_three.flatten
-  }
+  memo += three_rows_of_three.flatten}
 end
 
 get '/' do
