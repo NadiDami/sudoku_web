@@ -91,4 +91,15 @@ button:hover {
   display: block;
 }
 
+article {
+  font-family: 'Podkova', serif;
+  margin: 20px;
+  font-size: 20px;
+  color: white;
+  background-color: #800080;
+  opacity: 0.4;
+  filter:alpha(opacity=40);
+  font-weight: 400px
+}
+
 
