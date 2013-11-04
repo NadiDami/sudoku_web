@@ -17,4 +17,8 @@ helpers do
     value
   end
 
+  def cell_disabled?(cell_index)
+    cell_index != 0
+  end
+
 end
