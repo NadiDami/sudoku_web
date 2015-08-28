@@ -14,8 +14,6 @@ The task was set by Enrique Comba Riepenhausen, [@ecomba](http://www.github.com/
 
 For the Sudoku solving engine, I used [this code](https://github.com/makersacademy/sudoku) provided by Evgeny Shadchnev, [@shadchnev](http://www.github.com/shadchnev)
 
-You can visit my Sudoku Solver [here](http://sudoku-solver-production.herokuapp.com/)
-
 The *Week 5 test* was incorporated into this project. This involved:
 
 * deploying the app to Heroku, complete with both staging and production deployment targets
